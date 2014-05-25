@@ -1,0 +1,54 @@
+<sym>
+	<symbol id="$PNAME$" grimq="GrimQ" lualinq="LuaLinq" />
+	<symbol id="$FROM$" grimq="grimq.from" lualinq="from" />
+</sym>
+
+<file name="index">
+	<grimq>GRIMQ DOCUMENTATION – 1.2</grimq>
+
+	<grimq>
+	GrimQ is primarily a query library for Legend of Grimrock entities. The syntax is very similar to LINQ and reminds of SQL, for those who already know those languages.
+	Besides query capability, GrimQ offers additional domain-specific utility functions which can be useful to needs different from just querying and thus offer an advantage also to those who are not interested in the querying part (which is the most of the library anyway). If that’s you, jump to the Grimrock Specific Functions chapter to skip the querying part.
+	<grimq>
+	
+	<toc />
+</file>
+
+<file name="intro">
+	<t>Introduction to Queries</t>
+
+<t>
+A LuaLinq query is composed by three parts:
+ * Importing a data source into LuaLinq
+ * Querying the LuaLinq collection
+ * Terminating the query, by returning a result or by performing an action
+
+For example:
+	$FROM$({ "ciao", "hello", "au revoir" })
+		:where(function(v) return #v > 5; end)
+		:select(function(v) return string.upper(v); end)
+		:foreach(print)
+
+Is composed by those three parts:
+ * from - imports the elements contained in the specified table into the LuaLinq collection
+ * :where and :select - perform the query by pruning data and by transforming it
+ * :foreach(print) - ends the query performing an action (calling print for every element in the collection). We will use this a lot in our examples at first - for the moment, trust that all that ''foreach(print)'' does is printing each element of the collection.
+</t>
+
+<grimq>
+</grimq>
+
+
+
+
+
+
+
+
+</file>
+
+
+
+
+
+
