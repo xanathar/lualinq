@@ -58,7 +58,7 @@ function _count(self, predicate)
 		end
 	end
 	
-	return false
+	return result
 end
 
 
@@ -75,12 +75,9 @@ end
 
 -- Returns true if the collection contains the specified item
 function _contains(self, item, comparator)
+	comparator = comparator or function (v1, v2) return v1 == v2; end
 	for idx, value in ipairs(self.m_Data) do
-		if (comparator == nil) then
-			if (value == item) then return true; end
-		else
-			if (comparator(value, item)) then return true; end
-		end
+		if (comparator(value, item)) then return true; end
 	end
 	return false
 end
@@ -164,18 +161,4 @@ function _average(self, selector)
 		return 0
 	end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -2,8 +2,8 @@
 -- DEBUG TRACER
 -- ============================================================
 
-LIB_VERSION_TEXT = "1.5.1"
-LIB_VERSION = 151
+LIB_VERSION_TEXT = "1.5.2"
+LIB_VERSION = 152
 
 function setLogLevel(level)
 	LOG_LEVEL = level;

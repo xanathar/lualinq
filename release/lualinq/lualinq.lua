@@ -41,8 +41,8 @@ LOG_PREFIX = "LuaLinq: "
 -- DEBUG TRACER
 -- ============================================================
 
-LIB_VERSION_TEXT = "1.5.1"
-LIB_VERSION = 151
+LIB_VERSION_TEXT = "1.5.2"
+LIB_VERSION = 152
 
 function setLogLevel(level)
 	LOG_LEVEL = level;
@@ -406,16 +406,15 @@ end
 -- Returns only distinct items, using an optional comparator
 function _distinct(self, comparator)
 	local result = {}
+	comparator = comparator or function (v1, v2) return v1 == v2; end
 	
 	for idx, value in ipairs(self.m_Data) do
 		local found = false
 
 		for _, value2 in ipairs(result) do
-			if (comparator == nil) then
-				if (value == value2) then found = true; end
-			else
-				if (comparator(value, value2)) then found = true; end
-			end			
+			if (comparator(value, value2)) then
+				found = true
+			end
 		end
 	
 		if (not found) then
@@ -556,7 +555,7 @@ function _count(self, predicate)
 		end
 	end
 	
-	return false
+	return result
 end
 
 
@@ -573,12 +572,9 @@ end
 
 -- Returns true if the collection contains the specified item
 function _contains(self, item, comparator)
+	comparator = comparator or function (v1, v2) return v1 == v2; end
 	for idx, value in ipairs(self.m_Data) do
-		if (comparator == nil) then
-			if (value == item) then return true; end
-		else
-			if (comparator(value, item)) then return true; end
-		end
+		if (comparator(value, item)) then return true; end
 	end
 	return false
 end
@@ -662,18 +658,4 @@ function _average(self, selector)
 		return 0
 	end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

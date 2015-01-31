@@ -142,16 +142,15 @@ end
 -- Returns only distinct items, using an optional comparator
 function _distinct(self, comparator)
 	local result = {}
+	comparator = comparator or function (v1, v2) return v1 == v2; end
 	
 	for idx, value in ipairs(self.m_Data) do
 		local found = false
 
 		for _, value2 in ipairs(result) do
-			if (comparator == nil) then
-				if (value == value2) then found = true; end
-			else
-				if (comparator(value, value2)) then found = true; end
-			end			
+			if (comparator(value, value2)) then
+				found = true
+			end
 		end
 	
 		if (not found) then
